@@ -42,12 +42,14 @@ const collectEmployees = function() {
         continue;
       }
       currentEmployee.salary = parseInt(employeeSalary, 10);
-      employees.push(currentEmployee);
+      
 
       if (confirm("Add another employee?")){
-       isAddingEmployee = true;
+        employees.push(currentEmployee);
+        isAddingEmployee = true;
       } else 
-        {isAddingEmployee = false;} 
+        {employees.push(currentEmployee);
+        isAddingEmployee = false;} 
   }
 
 return employees;
@@ -67,6 +69,12 @@ const displayAverageSalary = function(employeesArray) {
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
+  console.log (employeesArray.length);
+
+  if (employeesArray.length == 0){
+    console.log('There are no employees.');
+    return;
+  }
   var randomEmployeeIndex =  Math.floor(Math.random() * (employeesArray.length -1));
   var randomEmployee = employeesArray[randomEmployeeIndex];
   var randomEmployeeFullName = randomEmployee.firstName + ' ' + randomEmployee.lastName;
